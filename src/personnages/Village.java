@@ -46,6 +46,7 @@ public class Village {
 		//Gaulois gaulois = village.trouverHabitant(1);
 		//System.out.println(gaulois);
 		//null
+		//
 		Gaulois obelix = new Gaulois("Obélix", 25);
 		village.ajouterHabitant(obelix);
 		village.afficherVillageois();
