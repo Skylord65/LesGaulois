@@ -40,6 +40,8 @@ public class Romain {
 //		brutus.prendreParole();
 //		brutus.parler("bonjour");
 //		brutus.recevoirCoup(400);
-//		Romain minus = new Romain("Minus", -6);
+		Romain minus = new Romain("Minus", 6);
+		System.out.println(Equipement.CASQUE);
+		System.out.println(Equipement.BOUCLIER);
 	}
 }
