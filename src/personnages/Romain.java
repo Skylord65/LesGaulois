@@ -10,6 +10,7 @@ public class Romain {
 		this.nom = nom;
 		this.force = force;
 		assert force > 0;
+		this.equipements = new Equipement[2];
 	}
 
 	public String getNom() {
@@ -45,8 +46,9 @@ public class Romain {
 			if (equipements[0] == equipement) {
 				System.out.println("Le soldat " + nom + " possède déjà un " + equipement.toString() + " ! ");
 			} else {
-				System.out.println("Le soldat s'équipe avec un " + nom + " ");
+				System.out.println("Le soldat " + nom + " s'équipe avec un " + equipement.toString() + " ");
 				equipements[1] = equipement;
+				nbEquipement = 2;
 			}
 			break;
 		default : // 0
@@ -62,8 +64,8 @@ public class Romain {
 //		brutus.parler("bonjour");
 //		brutus.recevoirCoup(400);
         Romain minus = new Romain("Minus",6);
-		System.out.println(Equipement.CASQUE);
-		System.out.println(Equipement.BOUCLIER);
+		//System.out.println(Equipement.CASQUE);
+		//System.out.println(Equipement.BOUCLIER);
 		minus.sEquiper(Equipement.CASQUE);
 		minus.sEquiper(Equipement.CASQUE);
 		minus.sEquiper(Equipement.BOUCLIER);
