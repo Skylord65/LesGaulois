@@ -6,11 +6,9 @@ public class Romain {
 	private Equipement equipements[];
 	private int nbEquipement = 0;
 	
-	public Romain(String nom, int force, Equipement equipements[], int nbEquipement) {
+	public Romain(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
-		this.nbEquipement = nbEquipement;
-		this.equipements = equipements;
 		assert force > 0;
 	}
 
@@ -35,12 +33,26 @@ public class Romain {
 		} else {
 			parler("J'abandonne...");
 		}
-		assert force < forceInit : "la force d'un a diminu�";
+		assert force < forceInit : "la force d'un a diminué";
 	}
 	
 	public void sEquiper(Equipement equipement) {
 		switch (nbEquipement) {
-		case 0 :
+		case 2:
+			System.out.println("Le soldat " + nom + " est déjà bien équipé !");
+			break;
+		case 1:
+			if (equipements[0] == equipement) {
+				System.out.println("Le soldat " + nom + " possède déjà un " + equipement.toString() + " ! ");
+			} else {
+				System.out.println("Le soldat s'équipe avec un " + nom + " ");
+				equipements[1] = equipement;
+			}
+			break;
+		default : // 0
+			System.out.println("Le soldat " + nom + " s'équipe avec un " + equipement.toString() + " !");
+			nbEquipement = 1;
+			equipements[0] = equipement; 
 		}
 	}
 	
@@ -49,8 +61,12 @@ public class Romain {
 //		brutus.prendreParole();
 //		brutus.parler("bonjour");
 //		brutus.recevoirCoup(400);
-//      Romain minus = new Romain("Minus",6);
+        Romain minus = new Romain("Minus",6);
 		System.out.println(Equipement.CASQUE);
 		System.out.println(Equipement.BOUCLIER);
+		minus.sEquiper(Equipement.CASQUE);
+		minus.sEquiper(Equipement.CASQUE);
+		minus.sEquiper(Equipement.BOUCLIER);
+		minus.sEquiper(Equipement.BOUCLIER);
 	}
 }
