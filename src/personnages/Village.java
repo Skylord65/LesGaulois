@@ -41,8 +41,8 @@ public class Village {
 		// Les numéros sont de 0 à 29 donc 30 n'est pas dans le tableau
 		Chef abraracourcix = new Chef("Abraracourcix", 6, village);
 		village.setChef(abraracourcix);
-		Gaulois astérix = new Gaulois("Astérix", 8);
-		village.ajouterHabitant(astérix);
+		Gaulois asterix = new Gaulois("Astérix", 8);
+		village.ajouterHabitant(asterix);
 		//Gaulois gaulois = village.trouverHabitant(1);
 		//System.out.println(gaulois);
 		//null
