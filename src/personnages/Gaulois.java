@@ -5,6 +5,8 @@ import java.io.ObjectInputStream.GetField;
 public class Gaulois {
 	private String nom;
 	private int force;
+	private int nombreTrophees;
+	private Equipement[] trophees = new Equipement[100];
 	private int effetPotion = 1;
 
 	public Gaulois(String nom, int force) {
@@ -19,15 +21,31 @@ public class Gaulois {
 		System.out.println(prendreParole() + "<< " + texte + " >>");
 	}
 	
+//	private String prendreParole() {
+//		return "Le gaulois " + nom + " : ";
+//	}
+	
 	private String prendreParole() {
-		return "Le gaulois " + nom + " : ";
-	}
+		return  "Le gaulois " + getNom() + " : ";
+		}
+	
+//	public void frapper(Romain romain) {
+//		System.out.println(nom + " envoie un grand coup dans la mâchoire de " 
+//				+ romain.getNom());
+//		romain.recevoirCoup((force / 3)*effetPotion);
+//	}
 	
 	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de " 
-				+ romain.getNom());
-		romain.recevoirCoup((force / 3)*effetPotion);
-	}
+		System.out.println(nom + " envoie un grand coup dans lamâchoire de " + romain.getNom());
+		Equipement[] romainTrophees = romain.recevoirCoup((force / 3) *
+		effetPotion);
+		for (int i = 0; romainTrophees != null && i < romainTrophees.length; i++,
+		nombreTrophees++) {
+		this.trophees[nombreTrophees] = romainTrophees[i];
+		}
+		return;
+		}
+
 		
 	public void boirePotion(int effetPotion) {
 		this.effetPotion = effetPotion;
