@@ -1,68 +1,69 @@
 package personnages;
 
-import java.io.ObjectInputStream.GetField;
 
 public class Gaulois {
 	private String nom;
-	private int force;
-	private int nombreTrophees;
-	private Equipement[] trophees = new Equipement[100];
 	private int effetPotion = 1;
-
+	private int force;
+	private int nbTrophees = 0;
+	private Equipement trophees[] = new Equipement[100];
+	
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
 	}
-
+	
 	public String getNom() {
 		return nom;
 	}
-	public void parler(String texte) {
-		System.out.println(prendreParole() + "<< " + texte + " >>");
-	}
 	
-//	private String prendreParole() {
-//		return "Le gaulois " + nom + " : ";
-//	}
+	public void parler(String texte) {
+		System.out.println(prendreParole() + "'" + texte + "'");
+	}
 	
 	private String prendreParole() {
-		return  "Le gaulois " + getNom() + " : ";
-		}
-	
-//	public void frapper(Romain romain) {
-//		System.out.println(nom + " envoie un grand coup dans la mâchoire de " 
-//				+ romain.getNom());
-//		romain.recevoirCoup((force / 3)*effetPotion);
-//	}
-	
-	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans lamâchoire de " + romain.getNom());
-		Equipement[] romainTrophees = romain.recevoirCoup((force / 3) *effetPotion);
-		for (int i = 0; romainTrophees != null && i < romainTrophees.length; i++,nombreTrophees++) {
-		this.trophees[nombreTrophees] = romainTrophees[i];
-		}
+	return "Le gaulois " + nom + " : ";
 	}
 
+	public void frapper(Romain romain) {
+		System.out.println(nom + " envoie un grand coup dans la m�choire de " + romain.getNom());
+		Equipement[] tropheesObtenu = romain.recevoirCoup((force / 3) * effetPotion);
+		for (int i = 0; tropheesObtenu != null && i < tropheesObtenu.length; i++,nbTrophees++) {
+		this.trophees[nbTrophees] = tropheesObtenu[i];
+		}
+		}
 		
-	public void boirePotion(int effetPotion) {
-		this.effetPotion = effetPotion;
-		parler("Merci Druide, je sens que ma force est " + effetPotion + " fois décuplée.");
+
+	
+	public void boirePotion(int forcePotion) {
+		effetPotion = forcePotion;
+		parler("Merci Druide, je sens que ma force est " + String.valueOf(forcePotion) + " fois decuplee");
 	}
+	
+	public void faireUneDonation(Musee musee) {
+		if (nbTrophees > 0) parler("Je donne au musee tous mes trophees :");
+		for (int i = 0;i<nbTrophees;i++) {
+			musee.donnerTrophee(this, trophees[i]);
+			System.out.println("-" + trophees[i].toString());
+			trophees[i] = null;
+		}
+		nbTrophees = 0;
+	}
+	
+	
 	
 	@Override
 	public String toString() {
-		return "Gaulois [nom=" + nom + ", force=" + force 
-				+ ", effetPotion=" + effetPotion + "]";
+		return "Gaulois [nom=" + nom + ", force=" + force
+		+ ", effetPotion=" + effetPotion + "]";
 	}
-
+	
 	public static void main(String[] args) {
-//		Gaulois asterix = new Gaulois("Astérix", 8);
-//		Romain brutus = new Romain("Brutus", 8);
-//		System.out.println(asterix.getNom());
-//		asterix.prendreParole();
-//		asterix.parler("hello");
-//		asterix.frapper(brutus);
-//		asterix.boirePotion(2);
+		Gaulois asterix = new Gaulois("Asterix",8);
+		System.out.println(asterix.getNom());
+		asterix.parler("WOUHOU");
+		Romain romain = new Romain("Romain",1);
+		asterix.frapper(romain);
+		asterix.boirePotion(3);
 	}
-
 }
